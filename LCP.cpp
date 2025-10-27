@@ -2,19 +2,18 @@
 #include <cstring>
 using namespace std;
 
-// Function to find longest common prefix
 string longestCommonPrefix(string strs[], int n) {
     if (n == 0) return "";
 
-    string prefix = strs[0];  // take the first string as base
+    string prefix = strs[0]; 
 
     for (int i = 1; i < n; i++) {
         int j = 0;
-        // compare prefix with strs[i] character by character
+      
         while (j < prefix.length() && j < strs[i].length() && prefix[j] == strs[i][j]) {
             j++;
         }
-        // reduce prefix to the matched part
+       
         prefix = prefix.substr(0, j);
 
         if (prefix.empty()) return "";
@@ -23,7 +22,7 @@ string longestCommonPrefix(string strs[], int n) {
 }
 
 int main() {
-    // Example 1
+
     string arr1[] = {"flower", "flow", "flight"};
     int n1 = sizeof(arr1) / sizeof(arr1[0]);
     cout << "Output: " << longestCommonPrefix(arr1, n1) << endl;
