@@ -1,0 +1,52 @@
+#include <vector>
+#include <unordered_map>
+#include <algorithm>
+#include <iterator>
+#include <iostream>
+using namespace std;
+
+class Solution {
+public:
+    int countCoveredBuildings(int n, vector<vector<int>>& buildings) {
+ unordered_map<int, vector<int>> rows, cols;
+
+
+        for (auto &b : buildings) {
+            rows[b[0]].push_back(b[1]);
+            cols[b[1]].push_back(b[0]);
+        }
+
+        for (auto &[_, vec] : rows) sort(vec.begin(), vec.end());
+        for (auto &[_, vec] : cols) sort(vec.begin(), vec.end());
+
+        int count = 0;
+
+        for (auto &b : buildings) {
+            int x = b[0], y = b[1];
+
+            auto &row = rows[x];
+            auto &col = cols[y];
+
+            auto it_row = lower_bound(row.begin(), row.end(), y);
+            bool hasLeft  = (it_row != row.begin());
+            bool hasRight = (next(it_row) != row.end());
+
+            auto it_col = lower_bound(col.begin(), col.end(), x);
+            bool hasAbove = (it_col != col.begin());
+            bool hasBelow = (next(it_col) != col.end());
+
+            if (hasLeft && hasRight && hasAbove && hasBelow)
+                count++;
+        }
+
+        return count;
+    }
+};
+
+int main() {
+    Solution sol;
+    int n = 5;
+    vector<vector<int>> buildings = {{1, 2}, {2, 2}, {3, 2}, {2, 1}, {2, 3}};
+    cout << sol.countCoveredBuildings(n, buildings) << endl; // Output: 1
+    return 0;
+}
