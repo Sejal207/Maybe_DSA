@@ -84,12 +84,12 @@ int main() {
     Solution sol;
     string version1 = "1.2";
     string version2 = "1.10";
-    cout << sol.compareVersion(version1, version2) << endl; // Output: -1
+    cout << sol.compareVersion(version1, version2) << endl; 
     version1 = "1.01";
     version2 = "1.001";
-    cout << sol.compareVersion(version1, version2) << endl; // Output: 0
+    cout << sol.compareVersion(version1, version2) << endl; 
     version1 = "1.0";
     version2 = "1.0.0.0";
-    cout << sol.compareVersion(version1, version2) << endl; // Output: 0
+    cout << sol.compareVersion(version1, version2) << endl; 
     return 0;
 }   
